@@ -64,3 +64,35 @@ jenazah N---N laporan_kehilangan  (lewat kecocokan_identifikasi)
 jenazah 1---N dokumen_pendukung
 laporan_kehilangan 1---N dokumen_pendukung
 ```
+
+## Perubahan skema setelah dikunci (lewat migrasi BARU)
+
+Migrasi lama tidak disunting. Setiap perubahan dibuat sebagai migrasi baru beserta alasannya:
+
+| Migrasi | Perubahan | Alasan |
+|---|---|---|
+| `2026_10_19_223438_tambah_batasan_role_pada_users_table` | `CHECK (role IN ('admin','petugas_forensik','petugas_administrasi','keluarga_pelapor'))`; default `role` menjadi `keluarga_pelapor` | Membatasi nilai tanpa enum native; default lama (`petugas_administrasi`) membuat akun registrasi publik otomatis menjadi petugas. Kolom tetap bernama `role`. |
+| `2026_10_19_223439_tambah_diajukan_oleh_pada_kecocokan_identifikasi_table` | kolom `diajukan_oleh` FK → users, nullable, **RESTRICT** | Tabel hanya mencatat verifikator, bukan pengaju. Dibutuhkan untuk jejak audit dan Policy "forensik hanya mengubah usulannya sendiri". Nullable untuk baris lama. |
+| `2026_10_19_224324_perlebar_status_identifikasi_pada_jenazah_table` | `jenazah.status_identifikasi` varchar(20) → varchar(30) | **Cacat migrasi lama**: nilai bawaan `belum_teridentifikasi` panjangnya 21 karakter sehingga setiap INSERT yang mengandalkan nilai bawaan gagal (`value too long`). Tidak terlihat karena kode lama belum pernah dijalankan dan seeder lama selalu mengisi status. |
+
+### Nilai sah kolom string (dijaga Form Request `in:` dan konstanta model)
+
+| Kolom | Nilai |
+|---|---|
+| `jenazah.jenis_kelamin`, `laporan_kehilangan.jenis_kelamin` | `laki-laki`, `perempuan`, `tidak_diketahui` |
+| `jenazah.kondisi_jenazah` | `utuh`, `sebagian`, `tidak_dikenali` |
+| `jenazah.status_identifikasi` | `belum_teridentifikasi` → `proses` (saat diajukan) → `teridentifikasi` (saat disetujui admin) |
+| `laporan_kehilangan.status` | `aktif`, `cocok` (hanya dari verifikasi), `ditutup` |
+| `kecocokan_identifikasi.metode_kecocokan` | `gigi`, `sidik_jari`, `dna`, `ciri_khusus`, `properti` |
+| `kecocokan_identifikasi.status_verifikasi` | `menunggu`, `disetujui`, `ditolak` |
+| `dokumen_pendukung.jenis_dokumen` | `foto`, `sidik_jari`, `surat_keterangan`, `berita_acara`, `identitas`, `lainnya` |
+| `*.golongan_darah` | `A`, `B`, `AB`, `O` |
+
+### Catatan
+
+- Berkas dokumen disimpan di disk privat `storage/app/private/dokumen-pendukung`
+  dan hanya dapat diunduh lewat `dokumen.unduh` (melewati Policy).
+- Penghapusan berantai (CASCADE) di basis data tidak menghapus berkas fisik
+  dokumen; berkas hanya ikut terhapus bila dokumen dihapus lewat aplikasi.
+- Pengujian memakai PostgreSQL (`si_manajemen_jenazah_test`) karena CHECK
+  `num_nonnulls()` tidak ada di SQLite.

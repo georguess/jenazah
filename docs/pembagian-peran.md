@@ -5,6 +5,6 @@
 | Peran | Nama | Tanggung jawab utama |
 |---|---|---|
 | Basis data & model | _(isi)_ | Skema migrasi, model Eloquent, integritas data |
-| Antarmuka & komponen | _(isi)_ | View Blade, komponen UI, alur navigasi |
-| Autentikasi & otorisasi | _(isi)_ | Login/register, middleware role, kontrol akses per peran |
+| Antarmuka & komponen | _(isi)_ | Halaman React (Inertia), komponen UI, alur navigasi |
+| Autentikasi & otorisasi | _(isi)_ | Starter kit (Fortify), middleware `peran`, Gate & Policy, feature test otorisasi |
 | Uji kebergunaan & dokumentasi | _(isi)_ | Skenario uji, sesi dengan calon pengguna, README/dokumen |

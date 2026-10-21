@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Jenazah;
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Arr;
 
 class JenazahSeeder extends Seeder
 {
@@ -20,14 +21,18 @@ class JenazahSeeder extends Seeder
         ];
 
         foreach ($data as $row) {
-            Jenazah::updateOrCreate(
+            $jenazah = Jenazah::updateOrCreate(
                 ['kode_jenazah' => $row['kode_jenazah']],
-                $row + [
+                Arr::except($row, 'status_identifikasi') + [
                     'tanggal_ditemukan' => now()->subDays(rand(1, 10))->toDateString(),
                     'catatan' => 'Data contoh untuk keperluan demo/seeding.',
                     'dicatat_oleh' => $petugas->id,
                 ]
             );
+
+            // status_identifikasi tidak fillable (hanya berubah lewat alur
+            // kecocokan), jadi seeder mengisinya secara eksplisit.
+            $jenazah->forceFill(['status_identifikasi' => $row['status_identifikasi']])->save();
         }
     }
 }

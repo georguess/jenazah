@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class DataPostmortem extends Model
 {
@@ -25,15 +26,17 @@ class DataPostmortem extends Model
     ];
 
     protected $casts = [
-        'tanggal_pemeriksaan' => 'date',
+        'tanggal_pemeriksaan' => 'date:Y-m-d',
+        'estimasi_tinggi_badan_cm' => 'decimal:1',
+        'estimasi_berat_badan_kg' => 'decimal:1',
     ];
 
-    public function jenazah()
+    public function jenazah(): BelongsTo
     {
         return $this->belongsTo(Jenazah::class, 'jenazah_id');
     }
 
-    public function pemeriksa()
+    public function pemeriksa(): BelongsTo
     {
         return $this->belongsTo(User::class, 'diperiksa_oleh');
     }
