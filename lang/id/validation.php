@@ -1,0 +1,72 @@
+<?php
+
+/*
+ * Pesan validasi Bahasa Indonesia untuk aturan yang dipakai Form Request
+ * proyek ini. Aturan lain jatuh ke bahasa cadangan (en).
+ */
+return [
+    'before_or_equal' => ':Attribute tidak boleh berada di masa depan.',
+    'between' => [
+        'numeric' => ':Attribute harus di antara :min dan :max.',
+    ],
+    'confirmed' => 'Konfirmasi :attribute tidak cocok.',
+    'current_password' => 'Kata sandi salah.',
+    'date' => ':Attribute bukan tanggal yang valid.',
+    'decimal' => ':Attribute harus memiliki :decimal angka desimal.',
+    'email' => ':Attribute harus berupa alamat email yang valid.',
+    'exists' => ':Attribute yang dipilih tidak valid.',
+    'file' => ':Attribute harus berupa berkas.',
+    'in' => ':Attribute yang dipilih tidak valid.',
+    'integer' => ':Attribute harus berupa bilangan bulat.',
+    'lowercase' => ':Attribute harus huruf kecil.',
+    'max' => [
+        'file' => ':Attribute maksimal :max kilobita.',
+        'numeric' => ':Attribute maksimal :max.',
+        'string' => ':Attribute maksimal :max karakter.',
+    ],
+    'mimes' => ':Attribute harus berkas bertipe: :values.',
+    'min' => [
+        'string' => ':Attribute minimal :min karakter.',
+    ],
+    'numeric' => ':Attribute harus berupa angka.',
+    'prohibited' => ':Attribute tidak boleh diisi.',
+    'prohibits' => 'Isian :attribute melarang :other diisi bersamaan.',
+    'regex' => 'Format :attribute tidak valid.',
+    'required' => ':Attribute wajib diisi.',
+    'required_if' => ':Attribute wajib diisi bila :other adalah :value.',
+    'required_without' => ':Attribute wajib diisi bila :values tidak diisi.',
+    'string' => ':Attribute harus berupa teks.',
+    'unique' => ':Attribute sudah dipakai.',
+
+    'attributes' => [
+        'kode_jenazah' => 'kode jenazah',
+        'tanggal_ditemukan' => 'tanggal ditemukan',
+        'lokasi_ditemukan' => 'lokasi ditemukan',
+        'jenis_kelamin' => 'jenis kelamin',
+        'perkiraan_usia' => 'perkiraan usia',
+        'kondisi_jenazah' => 'kondisi jenazah',
+        'nama_pelapor' => 'nama pelapor',
+        'no_hp_pelapor' => 'nomor HP pelapor',
+        'hubungan_dengan_korban' => 'hubungan dengan korban',
+        'nama_korban_hilang' => 'nama korban hilang',
+        'usia_perkiraan' => 'perkiraan usia',
+        'tanggal_hilang' => 'tanggal hilang',
+        'lokasi_terakhir' => 'lokasi terakhir',
+        'laporan_kehilangan_id' => 'laporan kehilangan',
+        'jenazah_id' => 'jenazah',
+        'tinggi_badan_cm' => 'tinggi badan',
+        'berat_badan_kg' => 'berat badan',
+        'estimasi_tinggi_badan_cm' => 'estimasi tinggi badan',
+        'estimasi_berat_badan_kg' => 'estimasi berat badan',
+        'tanggal_pemeriksaan' => 'tanggal pemeriksaan',
+        'metode_kecocokan' => 'metode kecocokan',
+        'skor_kecocokan' => 'skor kecocokan',
+        'status_verifikasi' => 'keputusan verifikasi',
+        'catatan_verifikasi' => 'catatan verifikasi',
+        'jenis_dokumen' => 'jenis dokumen',
+        'berkas' => 'berkas',
+        'name' => 'nama',
+        'role' => 'peran',
+        'password' => 'kata sandi',
+    ],
+];

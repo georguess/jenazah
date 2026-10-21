@@ -1,0 +1,14 @@
+{
+    "preset": "laravel",
+    "notPath": [
+        "database/migrations/0001_01_01_000000_create_users_table.php",
+        "database/migrations/0001_01_01_000001_create_cache_table.php",
+        "database/migrations/0001_01_01_000002_create_jobs_table.php",
+        "database/migrations/2026_01_01_000010_create_jenazah_table.php",
+        "database/migrations/2026_01_01_000011_create_laporan_kehilangan_table.php",
+        "database/migrations/2026_01_01_000012_create_data_antemortem_table.php",
+        "database/migrations/2026_01_01_000013_create_data_postmortem_table.php",
+        "database/migrations/2026_01_01_000014_create_kecocokan_identifikasi_table.php",
+        "database/migrations/2026_01_01_000015_create_dokumen_pendukung_table.php"
+    ]
+}

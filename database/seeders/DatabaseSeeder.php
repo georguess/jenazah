@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
             DataAntemortemSeeder::class,
             DataPostmortemSeeder::class,
             KecocokanIdentifikasiSeeder::class,
+            DataContohSeeder::class,
         ]);
     }
 }
